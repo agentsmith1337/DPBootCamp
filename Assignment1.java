@@ -253,7 +253,7 @@ public class Assignment1 {
         return reverseListHelper (head, temp);
     }
     //TIME COMPLEXITY : \Theta (n); SPACE COMPLEXITY : \Theta (n)
-    //SOLUTION 8 REGION ENDS
+    //SOLUTION 9 REGION ENDS
     static void reverseArray(int[] nums) {
         if (nums!=null)
         reverseArrayHelper(nums,0, nums.length-1);
