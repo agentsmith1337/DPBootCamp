@@ -38,7 +38,12 @@ public class Assignment2 {
             System.out.println(ans1);
             System.out.println(ans2);
 
-            //QUESTION 4 : 
+            System.out.println();
+            //QUESTION 4 : COMBINATIONS LEETCODE 77
+            List<List<Integer>>combine1 = combine(4,2);
+            List<List<Integer>>combine2 = combine(4,3);
+            System.out.println(combine1);
+            System.out.println(combine2);
         }
         //SOLUTION 1 : BINARY STRINGS WITH NUMBER OF 1s >= NUMBER OF 0s IN ANY PREFIX
         static void binaryNBit(int n) {
@@ -134,5 +139,22 @@ public class Assignment2 {
                 helper(digits, index+1, ans+"z",ANS);
                 break;
         }
+    }
+    //QUESTION 4 REGION STARTS
+    static List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> ans = new ArrayList<>();
+        helper(new ArrayList<>(), 0, 1, n, k, ans);
+        return ans;
+    }
+    static void helper(ArrayList<Integer> ans, int i, int j, int n, int k, List<List<Integer>> ANS) {
+        if (i==k) {
+            ANS.add(ans);
+            return;
+        }
+        if (j>n) return;
+        ArrayList<Integer> mod = new ArrayList<>(ans);
+        mod.add(j); 
+        helper(ans, i, j+1, n, k, ANS);
+        helper(mod, i+1, j+1, n, k, ANS);
     }
 }
