@@ -44,6 +44,10 @@ public class Assignment2 {
             List<List<Integer>>combine2 = combine(4,3);
             System.out.println(combine1);
             System.out.println(combine2);
+
+            //QUESTION 5 : NUM TILE POSSIBILITIE 
+            System.out.println(numTilePossibilities("ABC"));
+            System.out.println(numTilePossibilities("CDBAS"));
         }
         //SOLUTION 1 : BINARY STRINGS WITH NUMBER OF 1s >= NUMBER OF 0s IN ANY PREFIX
         static void binaryNBit(int n) {
@@ -156,5 +160,26 @@ public class Assignment2 {
         mod.add(j); 
         helper(ans, i, j+1, n, k, ANS);
         helper(mod, i+1, j+1, n, k, ANS);
+    }
+
+    //SOLUTION 5 : LETTER TILE POSSIBILITIES
+    static int numTilePossibilities(String tiles) {
+        int[] freq = new int[26];
+        for (char c : tiles.toCharArray()) freq[c - 'A']++;
+        return dfs(freq);
+    }
+
+    
+    static int dfs(int[] freq) {
+        int count = 0;
+        for (int i = 0; i < 26; i++) {
+            if (freq[i] == 0) continue;
+            // choose letter i
+            freq[i]--;
+            count += 1;          
+            count += dfs(freq);  
+            freq[i]++;           
+        }
+        return count;
     }
 }
