@@ -1,7 +1,71 @@
-
+import java.util.*;
 public class Assignment4 {
     public static void main(String[] args) {
+        //QUESTION 1 : WORD BREAK
+        List<String> keywords = new ArrayList<>();
+        keywords.add("apple");
+        keywords.add("pen");
+        System.out.println(wordBreak("applepenapple", keywords));
 
+        //QUESTION 2 : WORD BREAK 2 
+        keywords.clear();
+        keywords.add("apple");
+        keywords.add("pen");
+        keywords.add("applepen");
+        keywords.add("pine");
+        keywords.add("pineapple");
+        System.out.println(wordBreak2("pineapplepenapple", keywords));
+
+        //QUESTION 3 : N QUEENS
+        System.out.println(totalNQueens(4));
+        System.out.println(totalNQueens(5));
+        System.out.println(totalNQueens(10));
+
+        //QUESTION 4 : SUDOKU SOLVER
+        //NOT POSSIBLE TO SIMULATE HERE, SOURCED FROM MY LEETCODE
+
+        //QUESTION 5 : MERGE SORT
+        int[] arr = sortArray(new int[] {6,4,2,-1,-1,2,4,6,3,7,9}); 
+        for (int x: arr) {
+            System.out.print("-> "+x);
+        }
+
+        //QUESTION 6 : QUICK SORT 
+        
+    }
+    //SOLUTION 1 : WORD BREAK
+    public static boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String> set = new HashSet<>(wordDict);
+        Boolean[] dp = new Boolean[s.length()];
+        return helper(s, 0, set, dp);
+    }
+    static boolean helper(String s, int idx, HashSet<String> set, Boolean[] dp) {
+        if (idx==s.length()) return true;
+        if (dp[idx]!=null) return dp[idx];
+        for (int i=idx; i<s.length(); i++) {
+            if (set.contains(s.substring(idx,i+1))) {
+                if (helper(s, i+1, set, dp)) return true;
+            }
+        }
+        return dp[idx]=false;
+    }
+    //SOLUTION 2: WORD BREAK 2 
+    public static List<String> wordBreak2(String s, List<String> wordDict) {
+        HashSet<String> set = new HashSet<>(wordDict);
+        List<String> ans = new ArrayList<>();
+        helper2(s, 0, "", set, ans);
+        return ans;
+    }
+    static void helper2(String s, int idx, String ans, HashSet<String> set, List<String> ANS) {
+        if (idx>=s.length()) {
+            ANS.add(ans.substring(0,ans.length()-1));
+            return;
+        }
+        for (int i=idx; i<s.length(); i++) {
+            if (set.contains(s.substring(idx,i+1))) {
+                helper2(s, i+1, ans+s.substring(idx,i+1)+" ", set, ANS);
+            }
+        }
     }
     //SOLUTION 3: N QUEENS 2 
     public static int totalNQueens(int n) {
@@ -109,6 +173,7 @@ public class Assignment4 {
         return;
     }
     // QUESTION 6: QUICK SORT 
+
 }
 
 
