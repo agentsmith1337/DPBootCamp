@@ -1,8 +1,8 @@
 
 import java.util.*;
 public class Boredom {
+    //Lesser memory due to no hashmap, O(n) traversal and space 
     public static void main(String[] args) {
-        // HashMap<Integer, Integer> dp = new HashMap<>();
         Scanner io = new Scanner(System.in);
         int n = io.nextInt();
         int[] nums = new int[n];

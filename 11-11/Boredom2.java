@@ -1,5 +1,6 @@
 import java.util.*;
 public class Boredom2 {
+    //Uses frequency hashmap and arraylist 
     public static void main(String[] args) {
         Scanner io = new Scanner(System.in);
         int n = io.nextInt();
