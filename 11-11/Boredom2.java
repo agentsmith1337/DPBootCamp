@@ -25,11 +25,11 @@ public class Boredom2 {
     }    
     static long count(List<Integer> list, int idx, HashMap<Integer, Integer> map, Long[] dp) {
         if (idx>=list.size()) return 0;
-        if (idx==list.size()-1) return list.get(idx)*map.get(list.get(idx));
+        if (idx==list.size()-1) return (long)list.get(idx)*(long)map.get(list.get(idx));
         if (dp[idx]!=null) return dp[idx];
         long score1=0, score2=0;
         int next=(list.get(idx+1)==(list.get(idx)+1))?idx+2:idx+1;
-        score1+=list.get(idx)*map.get(list.get(idx))+count(list, next,map, dp);
+        score1+=(long)list.get(idx)*(long)map.get(list.get(idx))+count(list, next,map, dp);
         score2+=count(list, idx+1, map, dp);
         return dp[idx]=Math.max(score1,score2);
     }
